@@ -1,0 +1,100 @@
+package Clock;
+
+public class MainClock {
+
+	public static void main(String[] args) {
+	
+		
+		new MyFrame();
+	}
+
+}
+
+package Clock;
+
+import javax.swing.*;
+import java.awt.*;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
+
+public class MyFrame extends JFrame{
+
+	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	SimpleDateFormat timeFormat,dayFormat,dateFormat;
+	
+	JLabel timeLabel,dayLabel,dateLabel;
+	
+	String day,time,date;
+	
+	 public MyFrame()
+	{
+	   this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	   this.setTitle("Clock");
+	   this.setSize(350,200);
+	   this.setLayout(new FlowLayout());
+	   this.setResizable(false);
+	   this.getContentPane().setBackground(Color.BLACK);
+	   
+	   
+	   timeFormat=new SimpleDateFormat("hh:mm:ss a");
+	   dayFormat=new SimpleDateFormat("EEEE");
+	   dateFormat=new SimpleDateFormat("MMMM dd,yyyy");
+	   
+	   timeLabel= new JLabel();
+	   timeLabel.setFont(new Font("verdana",Font.PLAIN,50));
+	   
+	   dayLabel=new JLabel();
+	   dayLabel.setFont(new Font("Ink free",Font.PLAIN,35));
+	   
+	   dateLabel=new JLabel();
+	   dateLabel.setFont(new Font("Ink free",Font.PLAIN,25));
+	   
+	   timeLabel.setForeground(new Color(0x00ff00));
+	  
+	   dayLabel.setForeground(new Color(0x00ff00));
+	  
+	   dateLabel.setForeground(new Color(0x00ff00));
+	
+	   
+	   
+	   this.add(timeLabel); 
+	   this.add(dayLabel);
+	   this.add(dateLabel);
+	   this.setVisible(true);
+	   setTime();
+	   
+	   
+	   
+	   
+	}
+
+	public  void setTime() {
+		
+		while(true)
+		{
+			   time=timeFormat.format(Calendar.getInstance().getTime());
+			   timeLabel.setText(time);
+			   
+			   day=dayFormat.format(Calendar.getInstance().getTime());
+			   dayLabel.setText(day);
+			   
+			   date=dateFormat.format(Calendar.getInstance().getTime());
+			   dateLabel.setText(date);
+			   try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	 
+	 
+}
